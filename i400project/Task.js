@@ -31,7 +31,7 @@ function Task(props){
       square: {
         width: 24,
         height: 24,
-        backgroundColor: 'skyblue',
+        backgroundColor: 'gray',
         opacity: 0.4,
         borderRadius: 5,
         marginRight: 15,
