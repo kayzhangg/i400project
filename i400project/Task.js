@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-function Task(props){
+function Task( text ){
     return (
         <View style={styles.item}>
           <View style={styles.itemLeft}>
             <View style={styles.square}></View>
-            <Text style={styles.itemText}>{props.text}</Text>
+            <Text style={styles.itemText}>{text}</Text>
           </View>
           <View style={styles.circular}></View>
         </View>
