@@ -5,7 +5,7 @@ import AddTask from './AddTask';
 
 
 export default function HomeScreen( {navigation} ){
-    const [categories, setCategories] = useState([]); // Use an array for categories
+  const [categories, setCategories] = useState([]);
 
   const addCategory = categoryName => {
     setCategories([...categories, categoryName]);
@@ -14,11 +14,11 @@ export default function HomeScreen( {navigation} ){
   return (
     <View>
       <Text>Create Categories</Text>
-      <AddCategory onAddCategory={addCategory} />
+      <AddCategory onAddCategory={addCategory} /> 
       <Text>Categories:</Text>
       {categories.map((category, index) => (
         <TouchableOpacity
-          key={category} // Use category name as the key
+          key={index}
           onPress={() =>
             navigation.navigate('Category', { categoryName: category })
           }
@@ -26,11 +26,10 @@ export default function HomeScreen( {navigation} ){
             backgroundColor: 'lightgray',
             padding: 10,
             margin: 5,
-          }}
-        >
+          }}>
           <Text>{category}</Text>
         </TouchableOpacity>
       ))}
     </View>
-  )
-        }
+  );
+};

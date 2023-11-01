@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 
 export default function AddCategory({onAddCategory}){
-    const [categoryName, setCategoryName] = useState('');
+  const [categoryName, setCategoryName] = useState('');
 
   const addCategory = () => {
     if (categoryName) {
