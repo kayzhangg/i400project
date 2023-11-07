@@ -1,27 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
-
-export default function AddTask({ onAddTask }) {
-    const [taskName, setTaskName] = useState('');
-
-    const addTask = () => {
-        if (taskName) {
-            onAddTask(taskName);
-            setTaskName('');
-        }
-    };
-
-    return (
-        <View>
-            <Text>Create Task</Text>
-            <TextInput
-                placeholder="Task Name"
-                value={taskName}
-                onChangeText={text => setTaskName(text)}
-            />
-            <Button title="Add Task" onPress={addTask} />
-        </View>
-    );
-};
-
-
+import firebase from './firebaseConfig';
+const addTaskToFirestore = async (categoryName, task) => {
+    try {
+      await firestore().collection('categories').doc(categoryName).collection('tasks').add({
+        name: task,
+        // Any additional task properties can be added here
+      });
+    } catch (error) {
+      console.error('Error adding task: ', error);
+    }
+  };

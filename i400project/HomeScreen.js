@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
 import AddCategory from './AddCategory';
-import AddTask from './AddTask';
 
 
 export default function HomeScreen( {navigation} ){
@@ -11,11 +10,24 @@ export default function HomeScreen( {navigation} ){
     setCategories([...categories, categoryName]);
   };
 
+
   return (
     <View>
-      <Text>Create Categories</Text>
-      <AddCategory onAddCategory={addCategory} /> 
-      <Text>Categories:</Text>
+      <View style={{
+        height: 80, flexDirection: 'row',alignItems: 'center', backgroundColor:"lavender", marginBottom: 15}}>
+        <Text style={{
+        width: '100%',textAlign: 'center', fontSize:20,fontWeight:"bold"
+        }}>Create Category</Text>
+      </View>
+     
+      <AddCategory onAddCategory={addCategory}/> 
+      <View style={{
+        height: 30, flexDirection: 'row',alignItems: 'center', marginTop:20}}>
+        <Text style={{
+        width: '100%',textAlign: 'center', fontSize:16, fontWeight:"bold"
+        }}>Categories:</Text>
+      </View>
+ 
       {categories.map((category, index) => (
         <TouchableOpacity
           key={index}
@@ -25,7 +37,7 @@ export default function HomeScreen( {navigation} ){
           style={{
             backgroundColor: 'lightgray',
             padding: 10,
-            margin: 5,
+            margin: 5
           }}>
           <Text>{category}</Text>
         </TouchableOpacity>
