@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, FlatList, TextInput } from 'react-native';
-import GenerateRandomColor from './GenerateRandomColor';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 export default function CategoryScreen({ route, navigation }) {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState(''); // Define newTask state variable
+  const [newTask, setNewTask] = useState('');
   const categoryName = route.params.categoryName;
 
+  // adds task
+  // i looked through these stack overflow threads for a lot of help on adding/deleting tasks from async storage
+  // https://stackoverflow.com/questions/72845413/react-native-not-able-to-store-and-fetch-data-correctly-with-async-storage
+  // https://stackoverflow.com/questions/65221232/how-to-add-items-to-react-native-asyncstorage
   const addTask = async () => {
     try {
       if (newTask) {
@@ -22,6 +26,7 @@ export default function CategoryScreen({ route, navigation }) {
     }
   };
 
+  // deletes the task
   const deleteTask = async (index) => {
     try {
       const updatedTasks = tasks.filter((_, i) => i !== index);
@@ -47,7 +52,9 @@ export default function CategoryScreen({ route, navigation }) {
   }, [categoryName]);
 
 
+// https://www.geeksforgeeks.org/how-to-generate-random-colors-by-using-react-hooks/
 
+// generates random background color for category
   const [randomColor, setRandomColor] = useState('#FFFFFF'); // Initial color, e.g., white
 
   const generateRandomColor = () => {
@@ -59,7 +66,9 @@ export default function CategoryScreen({ route, navigation }) {
     generateRandomColor();
   }, []);
 
-  const displayNoTasksMessage = () => {
+
+  // displays "No tasks" when there are not any tasks 
+  const NoTasksMessage = () => {
     return (
       <Text style={{
         margin: 10
@@ -70,8 +79,8 @@ export default function CategoryScreen({ route, navigation }) {
   return (
     <View>
       <View style={{
-        height: 80, flexDirection: 'row', alignItems: 'center', backgroundColor: randomColor, borderBottomLeftRadius: 15, borderBottomRightRadius: 15
-      }}>
+        height: 100, flexDirection: 'row', alignItems: 'center', backgroundColor: randomColor, borderBottomLeftRadius: 25, borderBottomRightRadius: 25, marginBottom:10
+              }}>
         <Text style={{
           width: '100%', textAlign: 'center', fontSize: 20, fontWeight: "bold"
         }}>Category: {categoryName}</Text>
@@ -94,7 +103,7 @@ export default function CategoryScreen({ route, navigation }) {
         marginBottom: 10
       }}>Tasks:</Text>
 
-      {tasks.length === 0 ? displayNoTasksMessage() : (
+      {tasks.length === 0 ? NoTasksMessage() : (
         <FlatList
           data={tasks}
           keyExtractor={(item, index) => index.toString()}

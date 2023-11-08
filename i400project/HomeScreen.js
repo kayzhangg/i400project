@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import AddCategory from './AddCategory';
 
 
@@ -14,7 +14,7 @@ export default function HomeScreen( {navigation} ){
   return (
     <View>
       <View style={{
-        height: 80, flexDirection: 'row',alignItems: 'center', backgroundColor:"lavender", marginBottom: 15}}>
+        height: 100, flexDirection: 'row',alignItems: 'center', backgroundColor:"skyblue", borderBottomLeftRadius: 25, borderBottomRightRadius: 25, marginBottom:25}}>
         <Text style={{
         width: '100%',textAlign: 'center', fontSize:20,fontWeight:"bold"
         }}>Create Category</Text>
