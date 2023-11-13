@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, FlatList, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -77,13 +77,11 @@ export default function CategoryScreen({ route, navigation }) {
   };
 
   return (
-    <View>
+    <View style={{flex:1, paddingBottom:20}}>
       <View style={{
         height: 100, flexDirection: 'row', alignItems: 'center', backgroundColor: randomColor, borderBottomLeftRadius: 25, borderBottomRightRadius: 25, marginBottom:10
               }}>
-        <Text style={{
-          width: '100%', textAlign: 'center', fontSize: 20, fontWeight: "bold"
-        }}>Category: {categoryName}</Text>
+        <Text style={styles.subheader}>Category: {categoryName}</Text>
       </View>
       <View style={{ flexDirection: 'row', margin: 20 }}>
         <TextInput
@@ -108,10 +106,8 @@ export default function CategoryScreen({ route, navigation }) {
           data={tasks}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => (
-            <View style={{
-              flexDirection: 'row', alignItems: "center", justifyContent: 'space-between', backgroundColor: 'lightgray', padding: 10, margin: 5
-            }}>
-              <Text style={{ fontSize: 15 }}>{item}</Text>
+            <View style={styles.itemContainer}>
+              <Text style={styles.text}>{item}</Text>
               <Button title="Delete" onPress={() => deleteTask(index)} />
             </View>
           )}
@@ -120,3 +116,24 @@ export default function CategoryScreen({ route, navigation }) {
   );
 };
 
+const styles = StyleSheet.create({
+  itemContainer: {
+    flexDirection: 'row', 
+    alignItems: "center", 
+    justifyContent: 'space-between', 
+    backgroundColor: 'lightgray', 
+    padding: 10, 
+    margin: 5, 
+    borderRadius:10
+  },
+  text: {
+    fontSize: 15, 
+    marginLeft:10
+  },
+  subheader: {
+    width: '100%',
+    textAlign: 'center', 
+    fontSize:20, 
+    fontWeight:"bold"
+  }
+});
